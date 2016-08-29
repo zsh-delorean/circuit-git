@@ -1,0 +1,14 @@
+#
+# Delete remote-tracking branches except those under "origin" or "upstream".
+#
+# Arguments:
+#   none
+# Returns
+#   deleted branches
+#
+# Authors:
+#   Zsh DeLorean <https://github.com/zsh-delorean>
+#   Adam Vandenberg
+#
+
+git branch -r | sed -E "/^ *(origin|upstream)\//d" | xargs git branch -dr

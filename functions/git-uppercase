@@ -1,0 +1,14 @@
+#
+# Uppercase the first letter of a git-indexed filename.
+#
+# Arguments:
+#   path
+# Returns
+#   none
+#
+# Authors:
+#   Zsh DeLorean <https://github.com/zsh-delorean>
+#
+
+local pth="$1"
+git mv --force "${pth}" "$(tr '[:lower:]' '[:upper:]' <<< ${pth:0:1})${pth:1}"

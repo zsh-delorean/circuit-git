@@ -1,0 +1,14 @@
+#
+# Remove all remotes except "origin" and "upstream".
+#
+# Arguments:
+#   none
+# Returns
+#   none
+#
+# Authors:
+#   Zsh DeLorean <https://github.com/zsh-delorean>
+#   Adam Vandenberg
+#
+
+git remote | sed -E "/^(origin|upstream)$/d" | xargs -L 1 git remote rm

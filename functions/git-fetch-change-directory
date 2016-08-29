@@ -1,0 +1,27 @@
+#
+# Clone a git repository, then change into the directory.
+#
+# Authors:
+#   Zsh DeLorean <https://github.com/zsh-delorean>
+#
+
+if [[ -z "$1" ]]; then
+  print "usage: $0 url [directory]" >&2
+  return 1
+fi
+
+#
+# Cut path from repository name, or use optional second argument.
+#
+
+local dir="${2:-${${1##*/}%.*}}"
+
+#
+# Clone the repository, preferring hub, if available.
+#
+
+if (( $+commands[hub] )); then
+  hub clone "$1" "${dir}" && cd "${dir}"
+else
+  git clone "$1" "${dir}" && cd "${dir}"
+fi

@@ -1,0 +1,17 @@
+#
+# Remove a sensitive file from git history
+#
+# Arguments:
+#   path
+#   [extra flags]
+# Returns:
+#   status
+#
+# Authors:
+#   Zsh DeLorean <https://github.com/zsh-delorean>
+#
+
+git filter-branch --force --index-filter \
+  "git rm $2 --cached --ignore-unmatch '$1'" \
+  --prune-empty --tag-name-filter cat -- --all
+
